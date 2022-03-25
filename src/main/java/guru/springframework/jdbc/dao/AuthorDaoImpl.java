@@ -4,6 +4,7 @@ import guru.springframework.jdbc.domain.Author;
 import guru.springframework.jdbc.repositories.AuthorRepository;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 /**
@@ -26,7 +27,8 @@ public class AuthorDaoImpl implements AuthorDao {
 
     @Override
     public Author findAuthorByName(String firstName, String lastName) {
-        return null;
+        return authorRepository.findAuthorByFirstNameAndLastName(firstName, lastName)
+                .orElseThrow(EntityNotFoundException::new);
     }
 
     @Override
