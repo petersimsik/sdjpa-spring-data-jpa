@@ -209,4 +209,9 @@ public class DaoIntegrationTest {
         Book book = future.get();
         assertNotNull(book);
     }
+
+    @Test
+    void testFindBookByTitleWithQuery(){
+       Book book = bookRepository.findBookByTitleWithQuery("Clean Code");
+    }
 }
