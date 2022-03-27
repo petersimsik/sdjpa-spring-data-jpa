@@ -215,4 +215,10 @@ public class DaoIntegrationTest {
        Book book = bookRepository.findBookByTitleWithQuery("Clean Code");
        assertThat(book).isNotNull();
    }
+
+    @Test
+    void testFindBookByTitleWithQueryNamedParameter(){
+        Book book = bookRepository.findBookByTitleWithQueryNamedParameter("Clean Code");
+        assertThat(book).isNotNull();
+    }
 }
