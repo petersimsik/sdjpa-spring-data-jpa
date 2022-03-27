@@ -16,6 +16,8 @@ import org.springframework.test.context.ActiveProfiles;
 
 import javax.persistence.EntityNotFoundException;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -199,5 +201,12 @@ public class DaoIntegrationTest {
     void testFindAllBooksByTitle(){
        Stream<Book> stream =  bookRepository.findAllByTitleNotNull();
        assertTrue(stream.count() > 0);
+    }
+
+    @Test
+    void testBookFuture() throws ExecutionException, InterruptedException {
+        Future<Book> future = bookRepository.queryByTitle("Clean Code");
+        Book book = future.get();
+        assertNotNull(book);
     }
 }
