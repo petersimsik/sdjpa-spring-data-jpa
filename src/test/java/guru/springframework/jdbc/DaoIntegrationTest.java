@@ -213,5 +213,6 @@ public class DaoIntegrationTest {
     @Test
     void testFindBookByTitleWithQuery(){
        Book book = bookRepository.findBookByTitleWithQuery("Clean Code");
-    }
+       assertThat(book).isNotNull();
+   }
 }
