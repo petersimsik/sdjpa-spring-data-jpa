@@ -16,9 +16,10 @@ import org.springframework.test.context.ActiveProfiles;
 
 import javax.persistence.EntityNotFoundException;
 
+import java.util.stream.Stream;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by jt on 8/28/21.
@@ -192,5 +193,11 @@ public class DaoIntegrationTest {
     @Test
     void testNoException(){
         assertNull(bookRepository.getByTitle("foo"));
+    }
+
+    @Test
+    void testFindAllBooksByTitle(){
+       Stream<Book> stream =  bookRepository.findAllByTitleNotNull();
+       assertTrue(stream.count() > 0);
     }
 }
