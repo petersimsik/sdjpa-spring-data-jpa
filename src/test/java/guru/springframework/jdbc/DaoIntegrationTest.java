@@ -227,4 +227,10 @@ public class DaoIntegrationTest {
         Book book = bookRepository.findBookByTitleWithQueryNative("Clean Code");
         assertNotNull(book);
     }
+
+    @Test
+    void testFindBookByNamedQuery(){
+        Book book = bookRepository.jpaNamed("Clean Code");
+        assertNotNull(book);
+    }
 }
